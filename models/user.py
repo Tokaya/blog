@@ -4,6 +4,7 @@ from flask_login import UserMixin
 
 
 class User(db.document, UserMixin):
+    id = db.IntField()
     email = db.StringField(required=True)
     username = db.StringField(max_length=50)
     password = db.StringField(max_length=250)
