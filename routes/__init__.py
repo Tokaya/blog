@@ -8,3 +8,4 @@ from flask import session
 from flask import url_for
 from flask import abort
 from .user import current_user
+from models import db
