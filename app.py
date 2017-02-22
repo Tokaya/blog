@@ -1,11 +1,9 @@
 from flask import Flask
-from flask_mongoengine import MongoEngine
 from flask_script import Manager
 from routes.user import main as routes_user
+from models import db
 
 app = Flask(__name__)
-db = MongoEngine()
-db.init_app(app)
 manager = Manager(app)
 
 
@@ -15,8 +13,8 @@ def register_routes(app):
 
 def configure_app():
     app.config['MONGODB_SETTINGS'] = {'db': 'blog'}
-    app.config['TESTING'] = True
-    app.config['SECRET_KEY'] = 'flask + mongodb =<3'
+    app.config["SECRET_KEY"] = "secret_key"
+    db.init_app(app)
     register_routes(app)
 
 
@@ -37,5 +35,5 @@ def server():
 
 
 if __name__ == '__main__':
-    configure_app()
+    configured_app()
     manager.run()

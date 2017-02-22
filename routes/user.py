@@ -4,7 +4,6 @@ from routes import *
 main = Blueprint('user', __name__)
 
 
-
 def current_user():
     uid = session.get('user_id')
     if uid is not None:
@@ -25,15 +24,13 @@ def register():
     form = RegistrationForm()
     print(form.username)
     if form.validate_on_submit():
-        user = User(email=form.email.data,
-                    username=form.username.data,
+        user = User(username=form.username.data,
                     password=form.password.data)
         user.save()
 
     # 蓝图中的 url_for 需要加上蓝图的名字，这里是 user
     return redirect(url_for('.login_view', form=form))
     # return render_template()
-
 
 # @main.route('/user/login', methods=['POST'])
 # def login():
